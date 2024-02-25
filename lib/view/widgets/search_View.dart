@@ -10,14 +10,12 @@ import 'package:wheater/data/webSercives.dart';
 
 class Search extends StatelessWidget {
   static String routeName = 'search';
-   Search({super.key});
+  Search({super.key});
   WheatherModel? wheatherModel;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-
-      ),
+      appBar: AppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -26,20 +24,20 @@ class Search extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 13.0),
             child: TextField(
               controller: _controller,
-
+              cursorColor: Colors.grey,
               onSubmitted: (value) async {
-
                 var getWeather = BlocProvider.of<GetWeatherCubit>(context);
                 getWeather.getWheather(nameCity: value);
 
                 Navigator.pop(context);
-
               },
               decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey)),
                   suffixIcon: IconButton(
                     onPressed: () {
-
-                      var getWeather = BlocProvider.of<GetWeatherCubit>(context);
+                      var getWeather =
+                          BlocProvider.of<GetWeatherCubit>(context);
                       getWeather.getWheather(nameCity: _controller.text);
 
                       Navigator.pop(context);
@@ -47,15 +45,16 @@ class Search extends StatelessWidget {
                     icon: Icon(Icons.search),
                   ),
                   hintText: 'enter city name',
+                  labelText: 'city name',
+                  labelStyle: TextStyle(color: Colors.grey),
                   border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.green),
-                      borderRadius: BorderRadius.circular(14))),
+                      borderRadius: BorderRadius.circular(20))),
             ),
           )
         ],
       ),
     );
   }
-  final TextEditingController _controller = TextEditingController();
 
+  final TextEditingController _controller = TextEditingController();
 }

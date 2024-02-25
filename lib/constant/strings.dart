@@ -1,0 +1,1 @@
+const String noWeather ='there is no Weather\n   start searching';

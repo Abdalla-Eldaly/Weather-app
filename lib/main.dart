@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wheater/businessLogic/getWhaether/get_wheathear_cubit.dart';
 import 'package:wheater/view/screens/home_View.dart';
+import 'package:wheater/view/screens/spalsh_View.dart';
 import 'package:wheater/view/widgets/search_View.dart';
 
 import 'colorThems.dart';
@@ -23,11 +24,14 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             routes: {
               HomeScreen.routeName: (_) => HomeScreen(),
-              Search.routeName: (_) => Search()
+              Search.routeName: (_) => Search(),
+              SplashScreen.routeName:(_)=>SplashScreen()
             },
-            initialRoute: HomeScreen.routeName,
-            title: 'Flutter Demo',
+            initialRoute: SplashScreen.routeName,
+            title: 'Weather',
+
             theme: ThemeData(
+              appBarTheme:AppBarTheme(shape: OutlineInputBorder(borderSide: BorderSide(color: Colors.black))) ,
               primarySwatch: getColorTheme(
                 BlocProvider.of<GetWeatherCubit>(context).wheatherModel?.wheatherCondation,
               ),
